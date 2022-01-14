@@ -17,6 +17,7 @@ namespace NFTShowdown
             InitializeComponent();
         }
 
+        List<NFTs> nfts = new List<NFTs>();
         private void Form1_Load(object sender, EventArgs e)
         {
             Bitmap bgHome = new Bitmap(Properties.Resources.bgDefault);

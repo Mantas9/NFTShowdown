@@ -12,6 +12,7 @@ namespace NFTShowdown
 {
     public partial class Teambuilder : Form
     {
+        
         public Teambuilder()
         {
             InitializeComponent();
@@ -39,7 +40,11 @@ namespace NFTShowdown
                 case "Red Bored Ape":
                     picturePrev1.Image = Properties.Resources.redboredape;
                         break;
+                case "Primal Bored Ape":
+                    picturePrev1.Image= Properties.Resources.primalboredape;
+                    break;
                 default:
+                    picturePrev1.Image = Properties.Resources.Default;
                     break;
             }
         }

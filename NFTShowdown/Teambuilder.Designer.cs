@@ -29,29 +29,34 @@
         private void InitializeComponent()
         {
             this.groupNFTS1 = new System.Windows.Forms.GroupBox();
-            this.comboPickNFT1 = new System.Windows.Forms.ComboBox();
-            this.btnAddNFT = new System.Windows.Forms.Button();
-            this.btnValidateAll = new System.Windows.Forms.Button();
-            this.btnDone = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblType = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnValidate = new System.Windows.Forms.Button();
+            this.lblAbility = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblHP = new System.Windows.Forms.Label();
+            this.lblATK = new System.Windows.Forms.Label();
+            this.lblSPE = new System.Windows.Forms.Label();
+            this.lblDEF = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblDefence1 = new System.Windows.Forms.Label();
+            this.comboMove4 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboMove3 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboMove2 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboMove1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboPickNFT1 = new System.Windows.Forms.ComboBox();
+            this.btnAddNFT = new System.Windows.Forms.Button();
+            this.btnDone = new System.Windows.Forms.Button();
+            this.btnAddToTeam = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblAbility = new System.Windows.Forms.Label();
-            this.btnValidate = new System.Windows.Forms.Button();
+            this.txtTeamName = new System.Windows.Forms.TextBox();
+            this.btnValidateTeam = new System.Windows.Forms.Button();
             this.picturePrev1 = new System.Windows.Forms.PictureBox();
             this.groupNFTS1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturePrev1)).BeginInit();
@@ -60,24 +65,27 @@
             // groupNFTS1
             // 
             this.groupNFTS1.AutoSize = true;
+            this.groupNFTS1.Controls.Add(this.btnAddToTeam);
+            this.groupNFTS1.Controls.Add(this.lblType);
+            this.groupNFTS1.Controls.Add(this.label10);
             this.groupNFTS1.Controls.Add(this.btnValidate);
             this.groupNFTS1.Controls.Add(this.lblAbility);
             this.groupNFTS1.Controls.Add(this.label12);
-            this.groupNFTS1.Controls.Add(this.label11);
-            this.groupNFTS1.Controls.Add(this.label10);
-            this.groupNFTS1.Controls.Add(this.label9);
-            this.groupNFTS1.Controls.Add(this.lblDefence1);
+            this.groupNFTS1.Controls.Add(this.lblHP);
+            this.groupNFTS1.Controls.Add(this.lblATK);
+            this.groupNFTS1.Controls.Add(this.lblSPE);
+            this.groupNFTS1.Controls.Add(this.lblDEF);
             this.groupNFTS1.Controls.Add(this.label5);
             this.groupNFTS1.Controls.Add(this.label6);
             this.groupNFTS1.Controls.Add(this.label7);
             this.groupNFTS1.Controls.Add(this.label8);
-            this.groupNFTS1.Controls.Add(this.comboBox4);
+            this.groupNFTS1.Controls.Add(this.comboMove4);
             this.groupNFTS1.Controls.Add(this.label4);
-            this.groupNFTS1.Controls.Add(this.comboBox3);
+            this.groupNFTS1.Controls.Add(this.comboMove3);
             this.groupNFTS1.Controls.Add(this.label3);
-            this.groupNFTS1.Controls.Add(this.comboBox2);
+            this.groupNFTS1.Controls.Add(this.comboMove2);
             this.groupNFTS1.Controls.Add(this.label2);
-            this.groupNFTS1.Controls.Add(this.comboBox1);
+            this.groupNFTS1.Controls.Add(this.comboMove1);
             this.groupNFTS1.Controls.Add(this.label1);
             this.groupNFTS1.Controls.Add(this.comboPickNFT1);
             this.groupNFTS1.Controls.Add(this.picturePrev1);
@@ -86,126 +94,98 @@
             this.groupNFTS1.Size = new System.Drawing.Size(787, 210);
             this.groupNFTS1.TabIndex = 3;
             this.groupNFTS1.TabStop = false;
-            this.groupNFTS1.Text = "NFT 1";
+            this.groupNFTS1.Text = "NFT";
             this.groupNFTS1.Visible = false;
             // 
-            // comboPickNFT1
+            // lblType
             // 
-            this.comboPickNFT1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboPickNFT1.FormattingEnabled = true;
-            this.comboPickNFT1.Items.AddRange(new object[] {
-            "Red Bored Ape",
-            "Primal Bored Ape"});
-            this.comboPickNFT1.Location = new System.Drawing.Point(7, 150);
-            this.comboPickNFT1.Name = "comboPickNFT1";
-            this.comboPickNFT1.Size = new System.Drawing.Size(128, 24);
-            this.comboPickNFT1.TabIndex = 1;
-            this.comboPickNFT1.SelectedIndexChanged += new System.EventHandler(this.comboPickNFT1_SelectedIndexChanged);
+            this.lblType.AutoSize = true;
+            this.lblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblType.Location = new System.Drawing.Point(704, 16);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(15, 20);
+            this.lblType.TabIndex = 25;
+            this.lblType.Text = "-";
             // 
-            // btnAddNFT
+            // label10
             // 
-            this.btnAddNFT.Location = new System.Drawing.Point(12, 12);
-            this.btnAddNFT.Name = "btnAddNFT";
-            this.btnAddNFT.Size = new System.Drawing.Size(170, 35);
-            this.btnAddNFT.TabIndex = 2;
-            this.btnAddNFT.Text = "Add NFT";
-            this.btnAddNFT.UseVisualStyleBackColor = true;
-            this.btnAddNFT.Click += new System.EventHandler(this.btnAddNFT_Click);
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(639, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 20);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Type:";
             // 
-            // btnValidateAll
+            // btnValidate
             // 
-            this.btnValidateAll.Location = new System.Drawing.Point(188, 13);
-            this.btnValidateAll.Name = "btnValidateAll";
-            this.btnValidateAll.Size = new System.Drawing.Size(170, 35);
-            this.btnValidateAll.TabIndex = 4;
-            this.btnValidateAll.Text = "Validate all";
-            this.btnValidateAll.UseVisualStyleBackColor = true;
+            this.btnValidate.Location = new System.Drawing.Point(667, 150);
+            this.btnValidate.Name = "btnValidate";
+            this.btnValidate.Size = new System.Drawing.Size(114, 39);
+            this.btnValidate.TabIndex = 23;
+            this.btnValidate.Text = "Validate";
+            this.btnValidate.UseVisualStyleBackColor = true;
+            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
-            // btnDone
+            // lblAbility
             // 
-            this.btnDone.Location = new System.Drawing.Point(630, 13);
-            this.btnDone.Name = "btnDone";
-            this.btnDone.Size = new System.Drawing.Size(170, 35);
-            this.btnDone.TabIndex = 5;
-            this.btnDone.Text = "Done";
-            this.btnDone.UseVisualStyleBackColor = true;
-            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            this.lblAbility.AutoSize = true;
+            this.lblAbility.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbility.Location = new System.Drawing.Point(224, 150);
+            this.lblAbility.Name = "lblAbility";
+            this.lblAbility.Size = new System.Drawing.Size(15, 20);
+            this.lblAbility.TabIndex = 22;
+            this.lblAbility.Text = "-";
             // 
-            // label1
+            // label12
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(153, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Move 1:";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(153, 150);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 20);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Ability:";
             // 
-            // comboBox1
+            // lblHP
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(228, 18);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(228, 24);
-            this.comboBox1.TabIndex = 3;
+            this.lblHP.AutoSize = true;
+            this.lblHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHP.Location = new System.Drawing.Point(568, 22);
+            this.lblHP.Name = "lblHP";
+            this.lblHP.Size = new System.Drawing.Size(15, 20);
+            this.lblHP.TabIndex = 20;
+            this.lblHP.Text = "-";
             // 
-            // comboBox2
+            // lblATK
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(228, 48);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(228, 24);
-            this.comboBox2.TabIndex = 5;
+            this.lblATK.AutoSize = true;
+            this.lblATK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblATK.Location = new System.Drawing.Point(568, 52);
+            this.lblATK.Name = "lblATK";
+            this.lblATK.Size = new System.Drawing.Size(15, 20);
+            this.lblATK.TabIndex = 19;
+            this.lblATK.Text = "-";
             // 
-            // label2
+            // lblSPE
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(153, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Move 2:";
+            this.lblSPE.AutoSize = true;
+            this.lblSPE.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSPE.Location = new System.Drawing.Point(568, 112);
+            this.lblSPE.Name = "lblSPE";
+            this.lblSPE.Size = new System.Drawing.Size(15, 20);
+            this.lblSPE.TabIndex = 18;
+            this.lblSPE.Text = "-";
             // 
-            // comboBox3
+            // lblDEF
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(228, 78);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(228, 24);
-            this.comboBox3.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(153, 78);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Move 3:";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(228, 108);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(228, 24);
-            this.comboBox4.TabIndex = 9;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(153, 108);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 20);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Move 4:";
+            this.lblDEF.AutoSize = true;
+            this.lblDEF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDEF.Location = new System.Drawing.Point(568, 78);
+            this.lblDEF.Name = "lblDEF";
+            this.lblDEF.Size = new System.Drawing.Size(15, 20);
+            this.lblDEF.TabIndex = 17;
+            this.lblDEF.Text = "-";
             // 
             // label5
             // 
@@ -247,74 +227,157 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "HP:";
             // 
-            // lblDefence1
+            // comboMove4
             // 
-            this.lblDefence1.AutoSize = true;
-            this.lblDefence1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDefence1.Location = new System.Drawing.Point(568, 78);
-            this.lblDefence1.Name = "lblDefence1";
-            this.lblDefence1.Size = new System.Drawing.Size(15, 20);
-            this.lblDefence1.TabIndex = 17;
-            this.lblDefence1.Text = "-";
+            this.comboMove4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMove4.FormattingEnabled = true;
+            this.comboMove4.Location = new System.Drawing.Point(228, 108);
+            this.comboMove4.Name = "comboMove4";
+            this.comboMove4.Size = new System.Drawing.Size(228, 24);
+            this.comboMove4.TabIndex = 9;
+            this.comboMove4.SelectedIndexChanged += new System.EventHandler(this.comboMove4_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(153, 108);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 20);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Move 4:";
+            // 
+            // comboMove3
+            // 
+            this.comboMove3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMove3.FormattingEnabled = true;
+            this.comboMove3.Location = new System.Drawing.Point(228, 78);
+            this.comboMove3.Name = "comboMove3";
+            this.comboMove3.Size = new System.Drawing.Size(228, 24);
+            this.comboMove3.TabIndex = 7;
+            this.comboMove3.SelectedIndexChanged += new System.EventHandler(this.comboMove3_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(153, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Move 3:";
+            // 
+            // comboMove2
+            // 
+            this.comboMove2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMove2.FormattingEnabled = true;
+            this.comboMove2.Location = new System.Drawing.Point(228, 48);
+            this.comboMove2.Name = "comboMove2";
+            this.comboMove2.Size = new System.Drawing.Size(228, 24);
+            this.comboMove2.TabIndex = 5;
+            this.comboMove2.SelectedIndexChanged += new System.EventHandler(this.comboMove2_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(153, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Move 2:";
+            // 
+            // comboMove1
+            // 
+            this.comboMove1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMove1.FormattingEnabled = true;
+            this.comboMove1.Location = new System.Drawing.Point(228, 18);
+            this.comboMove1.Name = "comboMove1";
+            this.comboMove1.Size = new System.Drawing.Size(228, 24);
+            this.comboMove1.TabIndex = 3;
+            this.comboMove1.SelectedIndexChanged += new System.EventHandler(this.comboMove1_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(153, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Move 1:";
+            // 
+            // comboPickNFT1
+            // 
+            this.comboPickNFT1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboPickNFT1.FormattingEnabled = true;
+            this.comboPickNFT1.Items.AddRange(new object[] {
+            "Red Bored Ape",
+            "Primal Bored Ape",
+            "Laser Bored Ape"});
+            this.comboPickNFT1.Location = new System.Drawing.Point(7, 150);
+            this.comboPickNFT1.Name = "comboPickNFT1";
+            this.comboPickNFT1.Size = new System.Drawing.Size(128, 24);
+            this.comboPickNFT1.TabIndex = 1;
+            this.comboPickNFT1.SelectedIndexChanged += new System.EventHandler(this.comboPickNFT1_SelectedIndexChanged);
+            // 
+            // btnAddNFT
+            // 
+            this.btnAddNFT.Location = new System.Drawing.Point(12, 12);
+            this.btnAddNFT.Name = "btnAddNFT";
+            this.btnAddNFT.Size = new System.Drawing.Size(170, 35);
+            this.btnAddNFT.TabIndex = 2;
+            this.btnAddNFT.Text = "Add NFT";
+            this.btnAddNFT.UseVisualStyleBackColor = true;
+            this.btnAddNFT.Click += new System.EventHandler(this.btnAddNFT_Click);
+            // 
+            // btnDone
+            // 
+            this.btnDone.Location = new System.Drawing.Point(656, 13);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(144, 35);
+            this.btnDone.TabIndex = 5;
+            this.btnDone.Text = "Done";
+            this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            // 
+            // btnAddToTeam
+            // 
+            this.btnAddToTeam.Location = new System.Drawing.Point(667, 105);
+            this.btnAddToTeam.Name = "btnAddToTeam";
+            this.btnAddToTeam.Size = new System.Drawing.Size(114, 39);
+            this.btnAddToTeam.TabIndex = 26;
+            this.btnAddToTeam.Text = "Add";
+            this.btnAddToTeam.UseVisualStyleBackColor = true;
+            this.btnAddToTeam.Visible = false;
+            this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(568, 112);
+            this.label9.Location = new System.Drawing.Point(188, 19);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(15, 20);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "-";
+            this.label9.Size = new System.Drawing.Size(105, 20);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Team Name:";
             // 
-            // label10
+            // txtTeamName
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(568, 52);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(15, 20);
-            this.label10.TabIndex = 19;
-            this.label10.Text = "-";
+            this.txtTeamName.Location = new System.Drawing.Point(300, 16);
+            this.txtTeamName.Name = "txtTeamName";
+            this.txtTeamName.Size = new System.Drawing.Size(169, 22);
+            this.txtTeamName.TabIndex = 7;
             // 
-            // label11
+            // btnValidateTeam
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(568, 22);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(15, 20);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "-";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(153, 150);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(59, 20);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Ability:";
-            // 
-            // lblAbility
-            // 
-            this.lblAbility.AutoSize = true;
-            this.lblAbility.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAbility.Location = new System.Drawing.Point(224, 150);
-            this.lblAbility.Name = "lblAbility";
-            this.lblAbility.Size = new System.Drawing.Size(15, 20);
-            this.lblAbility.TabIndex = 22;
-            this.lblAbility.Text = "-";
-            // 
-            // btnValidate
-            // 
-            this.btnValidate.Location = new System.Drawing.Point(667, 150);
-            this.btnValidate.Name = "btnValidate";
-            this.btnValidate.Size = new System.Drawing.Size(114, 39);
-            this.btnValidate.TabIndex = 23;
-            this.btnValidate.Text = "Validate";
-            this.btnValidate.UseVisualStyleBackColor = true;
+            this.btnValidateTeam.Location = new System.Drawing.Point(502, 13);
+            this.btnValidateTeam.Name = "btnValidateTeam";
+            this.btnValidateTeam.Size = new System.Drawing.Size(144, 35);
+            this.btnValidateTeam.TabIndex = 8;
+            this.btnValidateTeam.Text = "Validate team";
+            this.btnValidateTeam.UseVisualStyleBackColor = true;
+            this.btnValidateTeam.Click += new System.EventHandler(this.btnValidateTeam_Click);
             // 
             // picturePrev1
             // 
@@ -332,10 +395,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(815, 276);
+            this.Controls.Add(this.btnValidateTeam);
+            this.Controls.Add(this.txtTeamName);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnDone);
-            this.Controls.Add(this.btnValidateAll);
             this.Controls.Add(this.groupNFTS1);
             this.Controls.Add(this.btnAddNFT);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Teambuilder";
             this.Text = "Teambuilder";
             this.Load += new System.EventHandler(this.Teambuilder_Load);
@@ -353,20 +419,19 @@
         private System.Windows.Forms.ComboBox comboPickNFT1;
         private System.Windows.Forms.PictureBox picturePrev1;
         private System.Windows.Forms.Button btnAddNFT;
-        private System.Windows.Forms.Button btnValidateAll;
         private System.Windows.Forms.Button btnDone;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox comboMove4;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboMove3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboMove2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboMove1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblDefence1;
+        private System.Windows.Forms.Label lblHP;
+        private System.Windows.Forms.Label lblATK;
+        private System.Windows.Forms.Label lblSPE;
+        private System.Windows.Forms.Label lblDEF;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -374,5 +439,11 @@
         private System.Windows.Forms.Label lblAbility;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnValidate;
+        private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnAddToTeam;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtTeamName;
+        private System.Windows.Forms.Button btnValidateTeam;
     }
 }

@@ -43,7 +43,8 @@
             this.comboFormat.FormattingEnabled = true;
             this.comboFormat.Items.AddRange(new object[] {
             "Random Battle",
-            "Teams Battle"});
+            "Teams Battle",
+            "Random 1v1 Battle"});
             this.comboFormat.Location = new System.Drawing.Point(97, 10);
             this.comboFormat.Name = "comboFormat";
             this.comboFormat.Size = new System.Drawing.Size(429, 24);
@@ -56,7 +57,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 25);
@@ -78,7 +79,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(12, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 25);
@@ -89,9 +90,9 @@
             // btnBattle
             // 
             this.btnBattle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBattle.Location = new System.Drawing.Point(161, 96);
+            this.btnBattle.Location = new System.Drawing.Point(17, 96);
             this.btnBattle.Name = "btnBattle";
-            this.btnBattle.Size = new System.Drawing.Size(226, 93);
+            this.btnBattle.Size = new System.Drawing.Size(509, 93);
             this.btnBattle.TabIndex = 4;
             this.btnBattle.Text = "Join Battle";
             this.btnBattle.UseVisualStyleBackColor = true;
@@ -101,27 +102,29 @@
             this.btnNewTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewTeam.Location = new System.Drawing.Point(12, 541);
             this.btnNewTeam.Name = "btnNewTeam";
-            this.btnNewTeam.Size = new System.Drawing.Size(279, 93);
+            this.btnNewTeam.Size = new System.Drawing.Size(514, 93);
             this.btnNewTeam.TabIndex = 5;
-            this.btnNewTeam.Text = "New Team";
+            this.btnNewTeam.Text = "Teambuilder";
             this.btnNewTeam.UseVisualStyleBackColor = true;
             this.btnNewTeam.Click += new System.EventHandler(this.btnNewTeam_Click);
             // 
             // btnEditTeam
             // 
+            this.btnEditTeam.Enabled = false;
             this.btnEditTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditTeam.Location = new System.Drawing.Point(297, 541);
+            this.btnEditTeam.Location = new System.Drawing.Point(12, 442);
             this.btnEditTeam.Name = "btnEditTeam";
-            this.btnEditTeam.Size = new System.Drawing.Size(273, 93);
+            this.btnEditTeam.Size = new System.Drawing.Size(253, 93);
             this.btnEditTeam.TabIndex = 6;
             this.btnEditTeam.Text = "Edit Team";
             this.btnEditTeam.UseVisualStyleBackColor = true;
+            this.btnEditTeam.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 646);
+            this.ClientSize = new System.Drawing.Size(539, 646);
             this.Controls.Add(this.btnEditTeam);
             this.Controls.Add(this.btnNewTeam);
             this.Controls.Add(this.btnBattle);

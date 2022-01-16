@@ -93,6 +93,16 @@ namespace NFTShowdown.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap laserBoredApe {
+            get {
+                object obj = ResourceManager.GetObject("laserBoredApe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap primalboredape {
             get {
                 object obj = ResourceManager.GetObject("primalboredape", resourceCulture);

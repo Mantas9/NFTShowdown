@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace NFTShowdown
 {
-    internal class Moves
+    public class Moves
     {
-        public Moves(string name, string type, string damageType, int damage, int accuracy)
+        public Moves(string name, string type, string moveType, int damage, int accuracy)
         {
             Name = name;
             Type = type;
-            DamageType = damageType;
+            MoveType = moveType;
             Damage = damage;
             Accuracy = accuracy;
         }
 
         public string Name { get; set; }
         public string Type { get; set; }
-        public string DamageType { get; set; }
+        public string MoveType { get; set; }
         public int Damage { get; set; }
         public int Accuracy { get; set; }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NFTShowdown
 {
-    internal class NFTs
+    public class NFTs
     {
         public NFTs(int iD, string name, string type, string ability, int hP, int attack, int defense, int speed)
         {
@@ -32,7 +32,6 @@ namespace NFTShowdown
         public Moves Move2 { get; set; }
         public Moves Move3 { get; set; }
         public Moves Move4 { get; set; }
-        public bool Validated { get; set; }
 
     }
 }

@@ -78,9 +78,13 @@ namespace NFTShowdown
         // Opening teambuilder
         private void btnNewTeam_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Teambuilder teambuilder = new Teambuilder(moves, teams);
             teambuilder.ShowDialog();
-            this.Hide();
+            foreach (var item in teams)
+            {
+                comboTeams.Items.Add(item.Name);
+            }
         }
     }
 }

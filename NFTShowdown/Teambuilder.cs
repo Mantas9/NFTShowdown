@@ -332,7 +332,7 @@ namespace NFTShowdown
         {
             if (teamValidated)
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to save this Team and exit? This cannot be undone.", "Confirmation", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to SAVE this Team and exit? This cannot be undone.", "Confirmation", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                         teams.Add(new Teams(txtTeamName.Text, nft1, nft2, nft3));

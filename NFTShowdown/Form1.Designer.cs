@@ -34,7 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnBattle = new System.Windows.Forms.Button();
             this.btnNewTeam = new System.Windows.Forms.Button();
-            this.btnEditTeam = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboFormat
@@ -96,6 +95,7 @@
             this.btnBattle.TabIndex = 4;
             this.btnBattle.Text = "Join Battle";
             this.btnBattle.UseVisualStyleBackColor = true;
+            this.btnBattle.Click += new System.EventHandler(this.btnBattle_Click);
             // 
             // btnNewTeam
             // 
@@ -108,24 +108,11 @@
             this.btnNewTeam.UseVisualStyleBackColor = true;
             this.btnNewTeam.Click += new System.EventHandler(this.btnNewTeam_Click);
             // 
-            // btnEditTeam
-            // 
-            this.btnEditTeam.Enabled = false;
-            this.btnEditTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditTeam.Location = new System.Drawing.Point(12, 442);
-            this.btnEditTeam.Name = "btnEditTeam";
-            this.btnEditTeam.Size = new System.Drawing.Size(253, 93);
-            this.btnEditTeam.TabIndex = 6;
-            this.btnEditTeam.Text = "Edit Team";
-            this.btnEditTeam.UseVisualStyleBackColor = true;
-            this.btnEditTeam.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 646);
-            this.Controls.Add(this.btnEditTeam);
             this.Controls.Add(this.btnNewTeam);
             this.Controls.Add(this.btnBattle);
             this.Controls.Add(this.label2);
@@ -148,7 +135,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBattle;
         private System.Windows.Forms.Button btnNewTeam;
-        private System.Windows.Forms.Button btnEditTeam;
     }
 }
 

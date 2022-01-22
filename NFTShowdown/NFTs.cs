@@ -8,7 +8,7 @@ namespace NFTShowdown
 {
     public class NFTs
     {
-        public NFTs(int iD, string name, string type, string ability, int hP, int attack, int defense, int speed)
+        public NFTs(int iD, string name, string type, string ability, int hP, int attack, int defense, int speed, Moves move1, Moves move2, Moves move3, Moves move4)
         {
             ID = iD;
             Name = name;
@@ -18,6 +18,14 @@ namespace NFTShowdown
             Attack = attack;
             Defense = defense;
             Speed = speed;
+            Move1 = move1;
+            Move2 = move2;
+            Move3 = move3;
+            Move4 = move4;
+        }
+        public NFTs()
+        {
+
         }
 
         public int ID { get; set; }

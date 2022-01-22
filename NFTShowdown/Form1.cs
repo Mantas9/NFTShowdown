@@ -20,14 +20,18 @@ namespace NFTShowdown
         List<NFTs> nfts = new List<NFTs>();
         List<Moves> moves = new List<Moves>();
         List<Teams> teams = new List<Teams>();
+        int teamID = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
-            AddMoves();
+            AddInfo();
+            comboFormat.SelectedItem = comboFormat.Items[2];
         }
 
         // Adding the moves
-        private void AddMoves()
+        private void AddInfo()
         {
+            // Adding moves
+            #region MOVES
             // Damaging moves
             Moves attack1 = new Moves("Fire Screenshot", "Fire", "Damage", 80, 100);
             moves.Add(attack1);
@@ -53,7 +57,15 @@ namespace NFTShowdown
             moves.Add(stats3);
             Moves stats4 = new Moves("Regular Customers", "Normal", "DefBoost", 40, 100);
             moves.Add(stats4);
+            #endregion
 
+            // Adding NFT sets for random battles/1v1
+            NFTs nft1 = new NFTs(1, "Red Bored Ape", "Fire", "Intimidate", 250, 120, 60, 110, attack1, attack4, stats1, stats3);
+            nfts.Add(nft1);
+            NFTs nft2 = new NFTs(2, "Primal Bored Ape", "Grass", "Spiky Body", 600, 50, 150, 30, attack3, attack6, stats2, stats1);
+            nfts.Add(nft2);
+            NFTs nft3 = new NFTs(3, "Laser Bored Ape", "Water", "None", 50, 400, 10, 300, attack2, attack5, stats1, stats3);
+            nfts.Add(nft3);
         }
 
         // Choosing battle format
@@ -79,11 +91,30 @@ namespace NFTShowdown
         private void btnNewTeam_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Teambuilder teambuilder = new Teambuilder(moves, teams);
-            teambuilder.ShowDialog();
-            foreach (var item in teams)
+            Teambuilder teambuilder = new Teambuilder(moves, teams, teamID);
+            if (teambuilder.ShowDialog() == DialogResult.OK)
             {
-                comboTeams.Items.Add(item.Name);
+                this.Show();
+                if (comboTeams.Items.Count != 0)
+                {
+                    comboTeams.SelectedItem = comboTeams.Items[0];
+                }
+            }
+        }
+
+        private void btnBattle_Click(object sender, EventArgs e)
+        {
+            switch (comboFormat.Text)
+            {
+                case "Random 1v1 Battle":
+                    BattleWindow battle = new BattleWindow(comboFormat.Text, nfts);
+                    if (battle.ShowDialog() == DialogResult.OK)
+                    {
+
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }

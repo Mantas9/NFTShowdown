@@ -13,9 +13,11 @@ namespace NFTShowdown
     public partial class Teambuilder : Form
     {
         #region Variables
+        // Linked variables
         List<NFTs> nfts = new List<NFTs>();
         List<Moves> moves = new List<Moves>();
         List<Teams> teams = new List<Teams>();
+        int teamID;
 
         int counter = 0;
         bool teamValidated = false;
@@ -43,11 +45,12 @@ namespace NFTShowdown
 
         #endregion
 
-        public Teambuilder(List<Moves> moves, List<Teams> teams)
+        public Teambuilder(List<Moves> moves, List<Teams> teams, int teamID)
         {
             InitializeComponent();
             this.moves = moves;
             this.teams = teams;
+            this.teamID = teamID;
         }
 
 
@@ -55,6 +58,10 @@ namespace NFTShowdown
         private void btnAddNFT_Click(object sender, EventArgs e)
         {
             // Setting maximum amount of NFTs in a team
+            comboMove1.Items.Clear();
+            comboMove2.Items.Clear();
+            comboMove3.Items.Clear();
+            comboMove4.Items.Clear();
             if (counter <= 3)
             {
                 groupNFTS1.Visible = true;
@@ -297,13 +304,13 @@ namespace NFTShowdown
                 switch (counter)
                 {
                     case 1:
-                        nft1 = new NFTs(id, name, type, ability, hp, attack, defence, speed);
+                        nft1 = new NFTs(id, name, type, ability, hp, attack, defence, speed, move1, move2, move3, move4);
                         break;
                     case 2:
-                        nft2 = new NFTs(id, name, type, ability, hp, attack, defence, speed);
+                        nft2 = new NFTs(id, name, type, ability, hp, attack, defence, speed, move1, move2, move3, move4);
                         break;
                     case 3:
-                        nft3 = new NFTs(id, name, type, ability, hp, attack, defence, speed);
+                        nft3 = new NFTs(id, name, type, ability, hp, attack, defence, speed, move1, move2, move3, move4);
                         break;
                     default:
                         break;
@@ -314,10 +321,10 @@ namespace NFTShowdown
                 picturePrev1.Image = Properties.Resources.Default;
                 comboPickNFT1.SelectedIndex = -1;
 
-                comboMove1.SelectedIndex = -1;
-                comboMove2.SelectedIndex = -1;
-                comboMove3.SelectedIndex = -1;
-                comboMove4.SelectedIndex = -1;
+                comboMove1.Items.Clear();
+                comboMove2.Items.Clear();
+                comboMove3.Items.Clear();
+                comboMove4.Items.Clear();
 
                 lblAbility.Text = "-";
                 lblType.Text = "-";
@@ -335,8 +342,9 @@ namespace NFTShowdown
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to SAVE this Team and exit? This cannot be undone.", "Confirmation", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                        teams.Add(new Teams(txtTeamName.Text, nft1, nft2, nft3));
-                        MessageBox.Show("Team successfully saved! Exiting...");
+                    teams.Add(new Teams(txtTeamName.Text, teamID, nft1, nft2, nft3));
+                    teamID++;
+                    MessageBox.Show("Team successfully saved! Exiting...");
                 }
                 else
                 {
@@ -352,9 +360,8 @@ namespace NFTShowdown
                 }
             }
 
-            this.Close();
-            Form1 main = new Form1();
-            main.Show();
+
+            this.DialogResult = DialogResult.OK;
         }
 
         private void btnValidateTeam_Click(object sender, EventArgs e)

@@ -15,7 +15,11 @@ namespace NFTShowdown
         #region Variables
         string format = "";
         List<NFTs> nfts = new List<NFTs>();
+        List<Bitmap> bgs = new List<Bitmap>();
+        int bgIndex;
         NFTs player;
+        int wins;
+        int losses;
 
         //AI
         Random randomAI = new Random();
@@ -27,19 +31,25 @@ namespace NFTShowdown
 
         //GUI
         int turn = 1;
+        int dead = 0;
 
         #endregion
 
-        public BattleWindow(string format, List<NFTs> nfts)
+        public BattleWindow(string format, List<NFTs> nfts, int wins, int losses, List<Bitmap> bgs, int bgIndex)
         {
             InitializeComponent();
             this.format = format;
             this.nfts = nfts;
+            this.wins = wins;
+            this.losses = losses;
+            this.bgs = bgs;
+            this.bgIndex = bgIndex;
         }
 
         // Battle window has multiple functions for different formats.
         private void BattleWindow_Load(object sender, EventArgs e)
         {
+            this.BackgroundImage = bgs[bgIndex];
             switch (format)
             {
                 case "Random 1v1 Battle":
@@ -124,7 +134,7 @@ namespace NFTShowdown
                     // Linking Progress bar/label with HP
                     progPlayerHP.Maximum = player.HP;
                     progPlayerHP.Value = player.HP;
-                    lblPlayerHP.Text = player.HP.ToString();
+                    lblPlayerHP.Text = progPlayerHP.Value.ToString();
                 }
                 if (item.ID == cpuID)
                 {
@@ -138,7 +148,7 @@ namespace NFTShowdown
         }
 
         // Player selects move. Commence damage calculation
-            #region Move Selection
+        #region Move Selection
         private void btnMove1_Click(object sender, EventArgs e)
         {
             MasterDamageCalculation(player, ai, 1);
@@ -185,12 +195,18 @@ namespace NFTShowdown
             if (player.Speed > ai.Speed)
             {
                 PlayerDamageCalculation(player, ai, attackingMove, 1);
-                AIDamageCalculation(player, ai, 0);
+                if (dead != 0)
+                {
+                    AIDamageCalculation(player, ai, 0);
+                }
             }
             else if (player.Speed < ai.Speed)
             {
                 AIDamageCalculation(player, ai, 1);
-                PlayerDamageCalculation(player, ai, attackingMove, 0);
+                if (dead != 0)
+                {
+                    PlayerDamageCalculation(player, ai, attackingMove, 0);
+                }
             }
             else
             {
@@ -202,12 +218,18 @@ namespace NFTShowdown
                 if (tieBreak == 0)
                 {
                     PlayerDamageCalculation(player, ai, attackingMove, 1);
-                    AIDamageCalculation(player, ai, 0);
+                    if (dead != 1)
+                    {
+                        AIDamageCalculation(player, ai, 0);
+                    }
                 }
                 else
                 {
                     AIDamageCalculation(player, ai, 1);
-                    PlayerDamageCalculation(player, ai, attackingMove, 0);
+                    if (dead != 0)
+                    {
+                        PlayerDamageCalculation(player, ai, attackingMove, 0);
+                    }
                 }
             }
             turn++;
@@ -216,9 +238,11 @@ namespace NFTShowdown
 
         private void PlayerDamageCalculation(NFTs player, NFTs ai, Moves move, int first)
         {
-            double calculated = ((((((2 * 100) / 5) + 2) * move.Power * (player.Attack / ai.Defense)) / 50) + 2);
+            #region Variables
+            double calculated = ((((((2 * 100) / 5) + 2) * move.Power * ((double)player.Attack / (double)ai.Defense)) / 50) + 2);
             int damage = Convert.ToInt32(calculated);
             Random rand = new Random();
+            #endregion
             //Checking if player went first, adding to logs
             // True
             if (first == 1)
@@ -257,19 +281,22 @@ namespace NFTShowdown
                             if (ai.HP - damage <= 0)
                             {
                                 ai.HP = 0;
-                                progCPUHP.Value = ai.HP;
-                                lblPlayerHP.Text = player.HP.ToString();
+                                progCPUHP.Value = 0;
+                                lblCPUHP.Text = "0";
                                 txtLogs.Text += ($"Turn: {turn}\n{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage! A knockout!\n");
                                 btnMove1.Enabled = false;
                                 btnMove2.Enabled = false;
                                 btnMove3.Enabled = false;
                                 btnMove4.Enabled = false;
+                                pictureDeadAI.Visible = true;
+                                dead = 1;
+                                MessageBox.Show("Player Won!");
                             }
                             else
                             {
                                 ai.HP -= damage;
                                 progCPUHP.Value = ai.HP;
-                                lblPlayerHP.Text = player.HP.ToString();
+                                lblCPUHP.Text = progCPUHP.Value.ToString();
                                 txtLogs.Text += ($"Turn: {turn}\n{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage!\n");
                             }
 
@@ -315,14 +342,14 @@ namespace NFTShowdown
                             // NFT recovers half its health
                             player.HP += progPlayerHP.Maximum / 2;
                             progPlayerHP.Value = player.HP;
-                            lblPlayerHP.Text = player.HP.ToString();
+                            lblPlayerHP.Text = progPlayerHP.Value.ToString();
                             txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
                         }
                         else if (player.HP > progPlayerHP.Maximum)
                         {
                             player.HP = progPlayerHP.Maximum;
                             progPlayerHP.Value = player.HP;
-                            lblPlayerHP.Text = player.HP.ToString();
+                            lblPlayerHP.Text = progPlayerHP.Value.ToString();
                             txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
                         }
                         #endregion
@@ -336,22 +363,25 @@ namespace NFTShowdown
                         }
                         if (chance < move.Accuracy)
                         {
-                            if (ai.HP-damage <= 0)
+                            if (ai.HP - damage <= 0)
                             {
                                 ai.HP = 0;
-                                progCPUHP.Value = ai.HP;
-                                lblPlayerHP.Text = player.HP.ToString();
+                                progCPUHP.Value = 0;
+                                lblCPUHP.Text = "0";
                                 txtLogs.Text += ($"{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage! A knockout!\n");
                                 btnMove1.Enabled = false;
                                 btnMove2.Enabled = false;
                                 btnMove3.Enabled = false;
                                 btnMove4.Enabled = false;
+                                pictureDeadAI.Visible = true;
+                                dead = 1;
+                                MessageBox.Show("Player Won!");
                             }
                             else
                             {
                                 ai.HP -= damage;
                                 progCPUHP.Value = ai.HP;
-                                lblPlayerHP.Text = player.HP.ToString();
+                                lblCPUHP.Text = progCPUHP.Value.ToString(); ;
                                 txtLogs.Text += ($"{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage!\n");
                             }
                         }
@@ -388,6 +418,8 @@ namespace NFTShowdown
 
         private void AIDamageCalculation(NFTs ai, NFTs player, int first)
         {
+            //Variables
+            #region Variables
             // Defining AI move id
             int moveID = randomAI.Next(1, 4);
             for (int i = 0; i < randomAI.Next(0, 100); i++)
@@ -413,9 +445,10 @@ namespace NFTShowdown
                     break;
             }
 
-            double calculated = ((((((2 * 100) / 5) + 2) * aiMove.Power * (player.Attack / ai.Defense)) / 50) + 2);
+            double calculated = ((((((2 * 100) / 5) + 2) * aiMove.Power * ((double)player.Attack / (double)ai.Defense)) / 50) + 2);
             int damage = Convert.ToInt32(calculated);
             Random rand = new Random();
+            #endregion
             //Checking if ai went first, adding to logs
             // True
             if (first == 1)
@@ -430,14 +463,14 @@ namespace NFTShowdown
                             // NFT recovers half its health
                             ai.HP += progCPUHP.Maximum / 2;
                             progCPUHP.Value = ai.HP;
-                            lblCPUHP.Text = ai.HP.ToString();
+                            lblCPUHP.Text = progCPUHP.Value.ToString(); ;
                             txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
                         }
-                        else if (ai.HP > progPlayerHP.Maximum/2)
+                        else if (ai.HP > progPlayerHP.Maximum / 2)
                         {
                             ai.HP = progPlayerHP.Maximum;
                             progCPUHP.Value = ai.HP;
-                            lblCPUHP.Text = ai.HP.ToString();
+                            lblCPUHP.Text = progCPUHP.Value.ToString(); ;
                             txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
                         }
                         #endregion
@@ -451,22 +484,25 @@ namespace NFTShowdown
                         }
                         if (chance < aiMove.Accuracy)
                         {
-                            if (player.HP-damage <=0)
+                            if (player.HP - damage <= 0)
                             {
                                 player.HP = 0;
                                 progPlayerHP.Value = 0;
-                                lblCPUHP.Text = ai.HP.ToString();
+                                lblPlayerHP.Text = "0";
                                 txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage! A knockout!\n");
                                 btnMove1.Enabled = false;
                                 btnMove2.Enabled = false;
                                 btnMove3.Enabled = false;
                                 btnMove4.Enabled = false;
+                                pictureDead.Visible = true;
+                                dead = 1;
+                                MessageBox.Show("CPU Wins! Good luck next time!");
                             }
                             else
                             {
                                 player.HP -= damage;
                                 progPlayerHP.Value -= damage;
-                                lblCPUHP.Text = ai.HP.ToString();
+                                lblPlayerHP.Text = progPlayerHP.Value.ToString();
                                 txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage!\n");
                             }
                         }
@@ -484,7 +520,7 @@ namespace NFTShowdown
                         break;
                     case "DefBoost":
                         #region DefBoost
-                        player.Defense *= aiMove.Power;
+                        ai.Defense *= aiMove.Power;
                         txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Def stat by {aiMove.Power}!\n");
                         #endregion
                         break;
@@ -511,14 +547,14 @@ namespace NFTShowdown
                             // NFT recovers half its health
                             ai.HP += progCPUHP.Maximum / 2;
                             progCPUHP.Value = ai.HP;
-                            lblCPUHP.Text = ai.HP.ToString();
+                            lblCPUHP.Text = progCPUHP.Value.ToString(); ;
                             txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
                         }
                         else if (ai.HP > progPlayerHP.Maximum)
                         {
                             ai.HP = progPlayerHP.Maximum;
                             progCPUHP.Value = ai.HP;
-                            lblCPUHP.Text = ai.HP.ToString();
+                            lblCPUHP.Text = progCPUHP.Value.ToString(); ;
                             txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
                         }
                         #endregion
@@ -536,18 +572,21 @@ namespace NFTShowdown
                             {
                                 player.HP = 0;
                                 progPlayerHP.Value = 0;
-                                lblCPUHP.Text = ai.HP.ToString();
+                                lblPlayerHP.Text = "0";
                                 txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage! A knockout!\n");
                                 btnMove1.Enabled = false;
                                 btnMove2.Enabled = false;
                                 btnMove3.Enabled = false;
                                 btnMove4.Enabled = false;
+                                pictureDead.Visible = true;
+                                dead = 1;
+                                MessageBox.Show("CPU Wins! Good luck next time!");
                             }
                             else
                             {
                                 player.HP -= damage;
                                 progPlayerHP.Value -= damage;
-                                lblCPUHP.Text = ai.HP.ToString();
+                                lblPlayerHP.Text = progPlayerHP.Value.ToString();
                                 txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage!\n");
                             }
                         }
@@ -581,5 +620,9 @@ namespace NFTShowdown
             }
         }
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -17,14 +17,30 @@ namespace NFTShowdown
             InitializeComponent();
         }
 
+        #region Variables
         List<NFTs> nfts = new List<NFTs>();
         List<Moves> moves = new List<Moves>();
         List<Teams> teams = new List<Teams>();
+        List<Bitmap> bgs = new List<Bitmap>();
         int teamID = 0;
+        int wins = 0;
+        int losses = 0;
+
+        int bgIndex = 0;
+        Bitmap bg1 = new Bitmap(Properties.Resources._1);
+        Bitmap bg2 = new Bitmap(Properties.Resources._2);
+        Bitmap bg3 = new Bitmap(Properties.Resources._3);
+
+        #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
             AddInfo();
             comboFormat.SelectedItem = comboFormat.Items[2];
+            lblWins.Text =  wins.ToString();
+            lblLosses.Text = losses.ToString();
+            bgs.Add(bg1);
+            bgs.Add(bg2);
+            bgs.Add(bg3);
         }
 
         // Adding the moves
@@ -65,15 +81,15 @@ namespace NFTShowdown
             nfts.Add(nft1);
             NFTs nft2 = new NFTs(2, "Primal Bored Ape", "Grass", "Spiky Body", 600, 10, 150, 30, attack3, attack6, stats2, stats1);
             nfts.Add(nft2);
-            NFTs nft3 = new NFTs(3, "Laser Bored Ape", "Water", "None", 300, 60, 10, 300, attack2, attack5, stats1, stats3);
+            NFTs nft3 = new NFTs(3, "Laser Bored Ape", "Water", "None", 300, 90, 60, 300, attack2, attack5, stats1, stats3);
             nfts.Add(nft3);
 
             // Meta Moles
-            NFTs nft4 = new NFTs(4, "Sombrero Meta Mole", "Fire", "None", 200, 60, 150, 10, attack1, attack4, stats1, stats2);
+            NFTs nft4 = new NFTs(4, "Sombrero Meta Mole", "Fire", "None", 200, 60, 150, 10, attack1, attack4, stats3, stats2);
             nfts.Add(nft4);
-            NFTs nft5 = new NFTs(5, "Hallowed Meta Mole", "Water", "None", 200, 55, 150, 10, attack2, attack5, stats1, stats2);
+            NFTs nft5 = new NFTs(5, "Hallowed Meta Mole", "Water", "None", 200, 55, 150, 10, attack2, attack5, stats3, stats2);
             nfts.Add(nft5);
-            NFTs nft6 = new NFTs(6, "King Meta Mole", "Grass", "None", 200, 75, 150, 10, attack3, attack6, stats1, stats2);
+            NFTs nft6 = new NFTs(6, "King Meta Mole", "Grass", "None", 200, 75, 150, 10, attack3, attack6, stats3, stats2);
             nfts.Add(nft6);
         }
 
@@ -100,7 +116,7 @@ namespace NFTShowdown
         private void btnNewTeam_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Teambuilder teambuilder = new Teambuilder(moves, teams, teamID);
+            Teambuilder teambuilder = new Teambuilder(moves, teams, teamID, bgs, bgIndex);
             if (teambuilder.ShowDialog() == DialogResult.OK)
             {
                 this.Show();
@@ -116,15 +132,46 @@ namespace NFTShowdown
             switch (comboFormat.Text)
             {
                 case "Random 1v1 Battle":
-                    BattleWindow battle = new BattleWindow(comboFormat.Text, nfts);
+                    BattleWindow battle = new BattleWindow(comboFormat.Text, nfts, wins, losses, bgs, bgIndex);
                     if (battle.ShowDialog() == DialogResult.OK)
                     {
-
+                        lblWins.Text = wins.ToString();
+                        lblLosses.Text = losses.ToString();
                     }
                     break;
                 default:
                     break;
             }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            bgIndex++;
+            if (bgIndex+1 > bgs.Count)
+            {
+                pictureBackground.Image = Properties.Resources._1;
+            }
+            else
+            {
+                switch (bgIndex)
+                {
+                    case 0:
+                        pictureBackground.Image = Properties.Resources._1;
+                        this.BackgroundImage = pictureBackground.Image;
+                        break;
+                    case 1:
+                        pictureBackground.Image = Properties.Resources._2;
+                        this.BackgroundImage = pictureBackground.Image;
+                        break;
+                    case 2:
+                        pictureBackground.Image= Properties.Resources._3;
+                        this.BackgroundImage = pictureBackground.Image;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
         }
     }
 }

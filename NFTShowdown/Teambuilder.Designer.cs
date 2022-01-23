@@ -52,12 +52,12 @@
             this.comboMove1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboPickNFT1 = new System.Windows.Forms.ComboBox();
+            this.picturePrev1 = new System.Windows.Forms.PictureBox();
             this.btnAddNFT = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTeamName = new System.Windows.Forms.TextBox();
             this.btnValidateTeam = new System.Windows.Forms.Button();
-            this.picturePrev1 = new System.Windows.Forms.PictureBox();
             this.groupNFTS1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturePrev1)).BeginInit();
             this.SuspendLayout();
@@ -334,6 +334,16 @@
             this.comboPickNFT1.TabIndex = 1;
             this.comboPickNFT1.SelectedIndexChanged += new System.EventHandler(this.comboPickNFT1_SelectedIndexChanged);
             // 
+            // picturePrev1
+            // 
+            this.picturePrev1.InitialImage = null;
+            this.picturePrev1.Location = new System.Drawing.Point(7, 16);
+            this.picturePrev1.Name = "picturePrev1";
+            this.picturePrev1.Size = new System.Drawing.Size(128, 128);
+            this.picturePrev1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picturePrev1.TabIndex = 0;
+            this.picturePrev1.TabStop = false;
+            // 
             // btnAddNFT
             // 
             this.btnAddNFT.Location = new System.Drawing.Point(12, 12);
@@ -381,21 +391,12 @@
             this.btnValidateTeam.UseVisualStyleBackColor = true;
             this.btnValidateTeam.Click += new System.EventHandler(this.btnValidateTeam_Click);
             // 
-            // picturePrev1
-            // 
-            this.picturePrev1.InitialImage = null;
-            this.picturePrev1.Location = new System.Drawing.Point(7, 16);
-            this.picturePrev1.Name = "picturePrev1";
-            this.picturePrev1.Size = new System.Drawing.Size(128, 128);
-            this.picturePrev1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picturePrev1.TabIndex = 0;
-            this.picturePrev1.TabStop = false;
-            // 
             // Teambuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(815, 276);
             this.Controls.Add(this.btnValidateTeam);
             this.Controls.Add(this.txtTeamName);

@@ -33,20 +33,30 @@
             this.progCPUHP = new System.Windows.Forms.ProgressBar();
             this.lblPlayerHP = new System.Windows.Forms.Label();
             this.progPlayerHP = new System.Windows.Forms.ProgressBar();
-            this.pictureCPU = new System.Windows.Forms.PictureBox();
-            this.picturePlayer = new System.Windows.Forms.PictureBox();
             this.btnMove1 = new System.Windows.Forms.Button();
             this.btnMove2 = new System.Windows.Forms.Button();
             this.btnMove3 = new System.Windows.Forms.Button();
             this.btnMove4 = new System.Windows.Forms.Button();
             this.txtLogs = new System.Windows.Forms.RichTextBox();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.pictureDeadAI = new System.Windows.Forms.PictureBox();
+            this.pictureDead = new System.Windows.Forms.PictureBox();
+            this.pictureCPU = new System.Windows.Forms.PictureBox();
+            this.picturePlayer = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDeadAI)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCPU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturePlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox1.CausesValidation = false;
+            this.groupBox1.Controls.Add(this.pictureDeadAI);
+            this.groupBox1.Controls.Add(this.pictureDead);
             this.groupBox1.Controls.Add(this.lblCPUHP);
             this.groupBox1.Controls.Add(this.progCPUHP);
             this.groupBox1.Controls.Add(this.lblPlayerHP);
@@ -94,24 +104,6 @@
             this.progPlayerHP.Size = new System.Drawing.Size(232, 23);
             this.progPlayerHP.TabIndex = 2;
             this.progPlayerHP.Value = 100;
-            // 
-            // pictureCPU
-            // 
-            this.pictureCPU.Location = new System.Drawing.Point(512, 21);
-            this.pictureCPU.Name = "pictureCPU";
-            this.pictureCPU.Size = new System.Drawing.Size(300, 300);
-            this.pictureCPU.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureCPU.TabIndex = 1;
-            this.pictureCPU.TabStop = false;
-            // 
-            // picturePlayer
-            // 
-            this.picturePlayer.Location = new System.Drawing.Point(6, 121);
-            this.picturePlayer.Name = "picturePlayer";
-            this.picturePlayer.Size = new System.Drawing.Size(300, 300);
-            this.picturePlayer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picturePlayer.TabIndex = 0;
-            this.picturePlayer.TabStop = false;
             // 
             // btnMove1
             // 
@@ -163,11 +155,71 @@
             this.txtLogs.TabIndex = 5;
             this.txtLogs.Text = "";
             // 
+            // btnExit
+            // 
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(1019, 514);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(195, 70);
+            this.btnExit.TabIndex = 6;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Visible = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // pictureDeadAI
+            // 
+            this.pictureDeadAI.BackColor = System.Drawing.Color.Transparent;
+            this.pictureDeadAI.BackgroundImage = global::NFTShowdown.Properties.Resources.dead;
+            this.pictureDeadAI.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureDeadAI.InitialImage = global::NFTShowdown.Properties.Resources.dead;
+            this.pictureDeadAI.Location = new System.Drawing.Point(512, 21);
+            this.pictureDeadAI.Name = "pictureDeadAI";
+            this.pictureDeadAI.Size = new System.Drawing.Size(300, 300);
+            this.pictureDeadAI.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureDeadAI.TabIndex = 7;
+            this.pictureDeadAI.TabStop = false;
+            this.pictureDeadAI.Visible = false;
+            // 
+            // pictureDead
+            // 
+            this.pictureDead.BackColor = System.Drawing.Color.Transparent;
+            this.pictureDead.BackgroundImage = global::NFTShowdown.Properties.Resources.dead;
+            this.pictureDead.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureDead.InitialImage = global::NFTShowdown.Properties.Resources.dead;
+            this.pictureDead.Location = new System.Drawing.Point(6, 122);
+            this.pictureDead.Name = "pictureDead";
+            this.pictureDead.Size = new System.Drawing.Size(300, 300);
+            this.pictureDead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureDead.TabIndex = 6;
+            this.pictureDead.TabStop = false;
+            this.pictureDead.Visible = false;
+            // 
+            // pictureCPU
+            // 
+            this.pictureCPU.Location = new System.Drawing.Point(512, 21);
+            this.pictureCPU.Name = "pictureCPU";
+            this.pictureCPU.Size = new System.Drawing.Size(300, 300);
+            this.pictureCPU.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureCPU.TabIndex = 1;
+            this.pictureCPU.TabStop = false;
+            // 
+            // picturePlayer
+            // 
+            this.picturePlayer.Location = new System.Drawing.Point(6, 121);
+            this.picturePlayer.Name = "picturePlayer";
+            this.picturePlayer.Size = new System.Drawing.Size(300, 300);
+            this.picturePlayer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picturePlayer.TabIndex = 0;
+            this.picturePlayer.TabStop = false;
+            // 
             // BattleWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1227, 555);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1227, 596);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.txtLogs);
             this.Controls.Add(this.btnMove4);
             this.Controls.Add(this.btnMove3);
@@ -180,6 +232,8 @@
             this.Load += new System.EventHandler(this.BattleWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDeadAI)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureDead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCPU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturePlayer)).EndInit();
             this.ResumeLayout(false);
@@ -200,5 +254,8 @@
         private System.Windows.Forms.Label lblCPUHP;
         private System.Windows.Forms.ProgressBar progCPUHP;
         private System.Windows.Forms.Label lblPlayerHP;
+        private System.Windows.Forms.PictureBox pictureDead;
+        private System.Windows.Forms.PictureBox pictureDeadAI;
+        private System.Windows.Forms.Button btnExit;
     }
 }

@@ -16,6 +16,8 @@ namespace NFTShowdown
         // Linked variables
         List<Moves> moves = new List<Moves>();
         List<Teams> teams = new List<Teams>();
+        List<Bitmap> bgs = new List<Bitmap>();
+        int bgIndex;
         int teamID;
 
         int counter = 0;
@@ -44,18 +46,22 @@ namespace NFTShowdown
 
         #endregion
 
-        public Teambuilder(List<Moves> moves, List<Teams> teams, int teamID)
+        public Teambuilder(List<Moves> moves, List<Teams> teams, int teamID, List<Bitmap> bgs, int bgIndex)
         {
             InitializeComponent();
             this.moves = moves;
             this.teams = teams;
             this.teamID = teamID;
+            this.bgs = bgs;
+            this.bgIndex = bgIndex;
         }
 
 
 
         private void btnAddNFT_Click(object sender, EventArgs e)
         {
+            // Background
+            this.BackgroundImage = bgs[bgIndex];
             // Setting maximum amount of NFTs in a team
             comboMove1.Items.Clear();
             comboMove2.Items.Clear();

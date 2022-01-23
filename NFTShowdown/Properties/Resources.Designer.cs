@@ -93,6 +93,26 @@ namespace NFTShowdown.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hallowedmetamole {
+            get {
+                object obj = ResourceManager.GetObject("hallowedmetamole", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kingmetamole {
+            get {
+                object obj = ResourceManager.GetObject("kingmetamole", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap laserBoredApe {
             get {
                 object obj = ResourceManager.GetObject("laserBoredApe", resourceCulture);
@@ -116,6 +136,16 @@ namespace NFTShowdown.Properties {
         internal static System.Drawing.Bitmap redboredape {
             get {
                 object obj = ResourceManager.GetObject("redboredape", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sombrerometamole {
+            get {
+                object obj = ResourceManager.GetObject("sombrerometamole", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -127,6 +127,12 @@
   <data name="Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Default.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="hallowedmetamole" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hallowedmetamole.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kingmetamole" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kingmetamole.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="laserBoredApe" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\laserBoredApe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,5 +141,8 @@
   </data>
   <data name="redboredape" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redboredape.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sombrerometamole" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sombrerometamole.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

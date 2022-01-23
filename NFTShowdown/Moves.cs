@@ -8,19 +8,19 @@ namespace NFTShowdown
 {
     public class Moves
     {
-        public Moves(string name, string type, string moveType, int damage, int accuracy)
+        public Moves(string name, string type, string moveType, int power, int accuracy)
         {
             Name = name;
             Type = type;
             MoveType = moveType;
-            Damage = damage;
+            Power = power;
             Accuracy = accuracy;
         }
 
         public string Name { get; set; }
         public string Type { get; set; }
         public string MoveType { get; set; }
-        public int Damage { get; set; }
+        public int Power { get; set; }
         public int Accuracy { get; set; }
     }
 }

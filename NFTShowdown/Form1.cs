@@ -48,24 +48,33 @@ namespace NFTShowdown
 
             // stats moves
             // For healing moves - Damage points are now the precentage of hp one recovers
-            // For stats boost/decrease - Damage is now the points of the stat (hp excluded) added
+            // For stats boost/decrease - Damage is now the multiplier of the selected stat
             Moves stats1 = new Moves("Fresh Minting", "Normal", "Healing", 50, 100);
             moves.Add(stats1);
-            Moves stats2 = new Moves("Price Rise", "Normal", "AtkBoost", 40, 100);
+            Moves stats2 = new Moves("Price Rise", "Normal", "AtkBoost", 2, 100);
             moves.Add(stats2);
-            Moves stats3 = new Moves("Hype Rise", "Normal", "SpeBoost", 40, 100);
+            Moves stats3 = new Moves("Hype Rise", "Normal", "SpeBoost", 2, 100);
             moves.Add(stats3);
-            Moves stats4 = new Moves("Regular Customers", "Normal", "DefBoost", 40, 100);
+            Moves stats4 = new Moves("Regular Customers", "Normal", "DefBoost", 2, 100);
             moves.Add(stats4);
             #endregion
 
             // Adding NFT sets for random battles/1v1
-            NFTs nft1 = new NFTs(1, "Red Bored Ape", "Fire", "Intimidate", 250, 120, 60, 110, attack1, attack4, stats1, stats3);
+            // Bored Apes
+            NFTs nft1 = new NFTs(1, "Red Bored Ape", "Fire", "Intimidate", 250, 50, 60, 110, attack1, attack4, stats1, stats3);
             nfts.Add(nft1);
-            NFTs nft2 = new NFTs(2, "Primal Bored Ape", "Grass", "Spiky Body", 600, 50, 150, 30, attack3, attack6, stats2, stats1);
+            NFTs nft2 = new NFTs(2, "Primal Bored Ape", "Grass", "Spiky Body", 600, 10, 150, 30, attack3, attack6, stats2, stats1);
             nfts.Add(nft2);
-            NFTs nft3 = new NFTs(3, "Laser Bored Ape", "Water", "None", 50, 400, 10, 300, attack2, attack5, stats1, stats3);
+            NFTs nft3 = new NFTs(3, "Laser Bored Ape", "Water", "None", 300, 60, 10, 300, attack2, attack5, stats1, stats3);
             nfts.Add(nft3);
+
+            // Meta Moles
+            NFTs nft4 = new NFTs(4, "Sombrero Meta Mole", "Fire", "None", 200, 60, 150, 10, attack1, attack4, stats1, stats2);
+            nfts.Add(nft4);
+            NFTs nft5 = new NFTs(5, "Hallowed Meta Mole", "Water", "None", 200, 55, 150, 10, attack2, attack5, stats1, stats2);
+            nfts.Add(nft5);
+            NFTs nft6 = new NFTs(6, "King Meta Mole", "Grass", "None", 200, 75, 150, 10, attack3, attack6, stats1, stats2);
+            nfts.Add(nft6);
         }
 
         // Choosing battle format

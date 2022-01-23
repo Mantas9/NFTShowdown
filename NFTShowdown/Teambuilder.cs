@@ -14,7 +14,6 @@ namespace NFTShowdown
     {
         #region Variables
         // Linked variables
-        List<NFTs> nfts = new List<NFTs>();
         List<Moves> moves = new List<Moves>();
         List<Teams> teams = new List<Teams>();
         int teamID;
@@ -96,7 +95,7 @@ namespace NFTShowdown
                     attack = 120;
                     defence = 60;
                     speed = 110;
-                    ability = "Intimidate";
+                    ability = "None";
                     type = "Fire";
 
                     // Adding the values to GUI
@@ -139,7 +138,7 @@ namespace NFTShowdown
                     name = "Primal Bored Ape";
                     id = 2;
                     hp = 600;
-                    attack = 50;
+                    attack = 20;
                     defence = 150;
                     speed = 30;
                     ability = "Spiky Body";
@@ -203,6 +202,144 @@ namespace NFTShowdown
                     foreach (var item in moves)
                     {
                         if (item.Type == "Water")
+                        {
+                            comboMove1.Items.Add(item.Name);
+                            comboMove2.Items.Add(item.Name);
+                            comboMove3.Items.Add(item.Name);
+                            comboMove4.Items.Add(item.Name);
+                        }
+                        if (item.MoveType == "SpeBoost" || item.MoveType == "AtkBoost")
+                        {
+                            comboMove1.Items.Add(item.Name);
+                            comboMove2.Items.Add(item.Name);
+                            comboMove3.Items.Add(item.Name);
+                            comboMove4.Items.Add(item.Name);
+                        }
+                    }
+                    #endregion
+                    break;
+                case "Sombrero Meta Mole":
+                    #region Sombrero Meta Mole
+                    // Clearing previous values
+                    comboMove1.Items.Clear();
+                    comboMove2.Items.Clear();
+                    comboMove3.Items.Clear();
+                    comboMove4.Items.Clear();
+
+                    // Stats
+                    name = "Sombrero Meta Mole";
+                    id = 4;
+                    hp = 200;
+                    attack = 300;
+                    defence = 150;
+                    speed = 10;
+                    ability = "None";
+                    type = "Fire";
+
+                    // Adding the values to GUI
+                    picturePrev1.Image = Properties.Resources.sombrerometamole;
+                    lblHP.Text = hp.ToString();
+                    lblATK.Text = attack.ToString();
+                    lblDEF.Text = defence.ToString();
+                    lblSPE.Text = speed.ToString();
+                    lblAbility.Text = ability.ToString();
+                    lblType.Text = type.ToString();
+
+                    foreach (var item in moves)
+                    {
+                        if (item.Type == "Fire")
+                        {
+                            comboMove1.Items.Add(item.Name);
+                            comboMove2.Items.Add(item.Name);
+                            comboMove3.Items.Add(item.Name);
+                            comboMove4.Items.Add(item.Name);
+                        }
+                        if (item.MoveType == "Healing" || item.MoveType == "AtkBoost")
+                        {
+                            comboMove1.Items.Add(item.Name);
+                            comboMove2.Items.Add(item.Name);
+                            comboMove3.Items.Add(item.Name);
+                            comboMove4.Items.Add(item.Name);
+                        }
+                    }
+                    #endregion
+                    break;
+                case "Hallowed Meta Mole":
+                    #region Hallowed Meta Mole
+                    // Clearing previous values
+                    comboMove1.Items.Clear();
+                    comboMove2.Items.Clear();
+                    comboMove3.Items.Clear();
+                    comboMove4.Items.Clear();
+
+                    // Stats
+                    name = "Hallowed Meta Mole";
+                    id = 5;
+                    hp = 200;
+                    attack = 300;
+                    defence = 150;
+                    speed = 10;
+                    ability = "None";
+                    type = "Water";
+
+                    // Adding the values to GUI
+                    picturePrev1.Image = Properties.Resources.hallowedmetamole;
+                    lblHP.Text = hp.ToString();
+                    lblATK.Text = attack.ToString();
+                    lblDEF.Text = defence.ToString();
+                    lblSPE.Text = speed.ToString();
+                    lblAbility.Text = ability.ToString();
+                    lblType.Text = type.ToString();
+
+                    foreach (var item in moves)
+                    {
+                        if (item.Type == "Water")
+                        {
+                            comboMove1.Items.Add(item.Name);
+                            comboMove2.Items.Add(item.Name);
+                            comboMove3.Items.Add(item.Name);
+                            comboMove4.Items.Add(item.Name);
+                        }
+                        if (item.MoveType == "SpeBoost" || item.MoveType == "AtkBoost")
+                        {
+                            comboMove1.Items.Add(item.Name);
+                            comboMove2.Items.Add(item.Name);
+                            comboMove3.Items.Add(item.Name);
+                            comboMove4.Items.Add(item.Name);
+                        }
+                    }
+                    #endregion
+                    break;
+                case "King Meta Mole":
+                    #region King Meta Mole
+                    // Clearing previous values
+                    comboMove1.Items.Clear();
+                    comboMove2.Items.Clear();
+                    comboMove3.Items.Clear();
+                    comboMove4.Items.Clear();
+
+                    // Stats
+                    name = "Hallowed Meta Mole";
+                    id = 5;
+                    hp = 200;
+                    attack = 300;
+                    defence = 150;
+                    speed = 10;
+                    ability = "None";
+                    type = "Grass";
+
+                    // Adding the values to GUI
+                    picturePrev1.Image = Properties.Resources.kingmetamole;
+                    lblHP.Text = hp.ToString();
+                    lblATK.Text = attack.ToString();
+                    lblDEF.Text = defence.ToString();
+                    lblSPE.Text = speed.ToString();
+                    lblAbility.Text = ability.ToString();
+                    lblType.Text = type.ToString();
+
+                    foreach (var item in moves)
+                    {
+                        if (item.Type == "Grass")
                         {
                             comboMove1.Items.Add(item.Name);
                             comboMove2.Items.Add(item.Name);
@@ -385,6 +522,11 @@ namespace NFTShowdown
 
                 }
             }
+        }
+
+        private void groupNFTS1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

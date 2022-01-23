@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupNFTS1 = new System.Windows.Forms.GroupBox();
+            this.btnAddToTeam = new System.Windows.Forms.Button();
             this.lblType = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnValidate = new System.Windows.Forms.Button();
@@ -53,7 +54,6 @@
             this.comboPickNFT1 = new System.Windows.Forms.ComboBox();
             this.btnAddNFT = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
-            this.btnAddToTeam = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTeamName = new System.Windows.Forms.TextBox();
             this.btnValidateTeam = new System.Windows.Forms.Button();
@@ -96,6 +96,18 @@
             this.groupNFTS1.TabStop = false;
             this.groupNFTS1.Text = "NFT";
             this.groupNFTS1.Visible = false;
+            this.groupNFTS1.Enter += new System.EventHandler(this.groupNFTS1_Enter);
+            // 
+            // btnAddToTeam
+            // 
+            this.btnAddToTeam.Location = new System.Drawing.Point(667, 105);
+            this.btnAddToTeam.Name = "btnAddToTeam";
+            this.btnAddToTeam.Size = new System.Drawing.Size(114, 39);
+            this.btnAddToTeam.TabIndex = 26;
+            this.btnAddToTeam.Text = "Add";
+            this.btnAddToTeam.UseVisualStyleBackColor = true;
+            this.btnAddToTeam.Visible = false;
+            this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
             // 
             // lblType
             // 
@@ -314,7 +326,8 @@
             this.comboPickNFT1.Items.AddRange(new object[] {
             "Red Bored Ape",
             "Primal Bored Ape",
-            "Laser Bored Ape"});
+            "Laser Bored Ape",
+            "Sombrero Meta Mole"});
             this.comboPickNFT1.Location = new System.Drawing.Point(7, 150);
             this.comboPickNFT1.Name = "comboPickNFT1";
             this.comboPickNFT1.Size = new System.Drawing.Size(128, 24);
@@ -340,17 +353,6 @@
             this.btnDone.Text = "Done";
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
-            // 
-            // btnAddToTeam
-            // 
-            this.btnAddToTeam.Location = new System.Drawing.Point(667, 105);
-            this.btnAddToTeam.Name = "btnAddToTeam";
-            this.btnAddToTeam.Size = new System.Drawing.Size(114, 39);
-            this.btnAddToTeam.TabIndex = 26;
-            this.btnAddToTeam.Text = "Add";
-            this.btnAddToTeam.UseVisualStyleBackColor = true;
-            this.btnAddToTeam.Visible = false;
-            this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
             // 
             // label9
             // 

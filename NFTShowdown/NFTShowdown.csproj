@@ -119,5 +119,14 @@
   <ItemGroup>
     <None Include="Resources\laserBoredApe.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sombrerometamole.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hallowedmetamole.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kingmetamole.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

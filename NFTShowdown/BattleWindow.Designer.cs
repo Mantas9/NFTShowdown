@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblCPUHP = new System.Windows.Forms.Label();
+            this.progCPUHP = new System.Windows.Forms.ProgressBar();
+            this.lblPlayerHP = new System.Windows.Forms.Label();
+            this.progPlayerHP = new System.Windows.Forms.ProgressBar();
             this.pictureCPU = new System.Windows.Forms.PictureBox();
             this.picturePlayer = new System.Windows.Forms.PictureBox();
             this.btnMove1 = new System.Windows.Forms.Button();
@@ -43,6 +47,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblCPUHP);
+            this.groupBox1.Controls.Add(this.progCPUHP);
+            this.groupBox1.Controls.Add(this.lblPlayerHP);
+            this.groupBox1.Controls.Add(this.progPlayerHP);
             this.groupBox1.Controls.Add(this.pictureCPU);
             this.groupBox1.Controls.Add(this.picturePlayer);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
@@ -50,6 +58,42 @@
             this.groupBox1.Size = new System.Drawing.Size(818, 427);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // lblCPUHP
+            // 
+            this.lblCPUHP.AutoSize = true;
+            this.lblCPUHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCPUHP.Location = new System.Drawing.Point(518, 328);
+            this.lblCPUHP.Name = "lblCPUHP";
+            this.lblCPUHP.Size = new System.Drawing.Size(20, 22);
+            this.lblCPUHP.TabIndex = 5;
+            this.lblCPUHP.Text = "0";
+            // 
+            // progCPUHP
+            // 
+            this.progCPUHP.Location = new System.Drawing.Point(580, 327);
+            this.progCPUHP.Name = "progCPUHP";
+            this.progCPUHP.Size = new System.Drawing.Size(232, 23);
+            this.progCPUHP.TabIndex = 4;
+            this.progCPUHP.Value = 100;
+            // 
+            // lblPlayerHP
+            // 
+            this.lblPlayerHP.AutoSize = true;
+            this.lblPlayerHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerHP.Location = new System.Drawing.Point(245, 92);
+            this.lblPlayerHP.Name = "lblPlayerHP";
+            this.lblPlayerHP.Size = new System.Drawing.Size(20, 22);
+            this.lblPlayerHP.TabIndex = 3;
+            this.lblPlayerHP.Text = "0";
+            // 
+            // progPlayerHP
+            // 
+            this.progPlayerHP.Location = new System.Drawing.Point(7, 92);
+            this.progPlayerHP.Name = "progPlayerHP";
+            this.progPlayerHP.Size = new System.Drawing.Size(232, 23);
+            this.progPlayerHP.TabIndex = 2;
+            this.progPlayerHP.Value = 100;
             // 
             // pictureCPU
             // 
@@ -135,6 +179,7 @@
             this.Text = "BattleWindow";
             this.Load += new System.EventHandler(this.BattleWindow_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCPU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturePlayer)).EndInit();
             this.ResumeLayout(false);
@@ -151,5 +196,9 @@
         private System.Windows.Forms.Button btnMove3;
         private System.Windows.Forms.Button btnMove4;
         private System.Windows.Forms.RichTextBox txtLogs;
+        private System.Windows.Forms.ProgressBar progPlayerHP;
+        private System.Windows.Forms.Label lblCPUHP;
+        private System.Windows.Forms.ProgressBar progCPUHP;
+        private System.Windows.Forms.Label lblPlayerHP;
     }
 }

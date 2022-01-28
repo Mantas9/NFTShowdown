@@ -21,15 +21,9 @@ namespace NFTShowdown
         List<NFTs> nfts = new List<NFTs>();
         List<Moves> moves = new List<Moves>();
         List<Teams> teams = new List<Teams>();
-        List<Bitmap> bgs = new List<Bitmap>();
         int teamID = 0;
         int wins = 0;
         int losses = 0;
-
-        int bgIndex = 0;
-        Bitmap bg1 = new Bitmap(Properties.Resources._1);
-        Bitmap bg2 = new Bitmap(Properties.Resources._2);
-        Bitmap bg3 = new Bitmap(Properties.Resources._3);
 
         #endregion
         private void Form1_Load(object sender, EventArgs e)
@@ -38,9 +32,6 @@ namespace NFTShowdown
             comboFormat.SelectedItem = comboFormat.Items[2];
             lblWins.Text =  wins.ToString();
             lblLosses.Text = losses.ToString();
-            bgs.Add(bg1);
-            bgs.Add(bg2);
-            bgs.Add(bg3);
         }
 
         // Adding the moves
@@ -116,7 +107,7 @@ namespace NFTShowdown
         private void btnNewTeam_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Teambuilder teambuilder = new Teambuilder(moves, teams, teamID, bgs, bgIndex);
+            Teambuilder teambuilder = new Teambuilder(moves, teams, teamID);
             if (teambuilder.ShowDialog() == DialogResult.OK)
             {
                 this.Show();
@@ -132,9 +123,11 @@ namespace NFTShowdown
             switch (comboFormat.Text)
             {
                 case "Random 1v1 Battle":
-                    BattleWindow battle = new BattleWindow(comboFormat.Text, nfts, wins, losses, bgs, bgIndex);
+                    BattleWindow battle = new BattleWindow(comboFormat.Text, nfts, ref wins,ref losses);
+                    this.Hide();
                     if (battle.ShowDialog() == DialogResult.OK)
                     {
+                        this.Show();
                         lblWins.Text = wins.ToString();
                         lblLosses.Text = losses.ToString();
                     }
@@ -142,36 +135,6 @@ namespace NFTShowdown
                 default:
                     break;
             }
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            bgIndex++;
-            if (bgIndex+1 > bgs.Count)
-            {
-                pictureBackground.Image = Properties.Resources._1;
-            }
-            else
-            {
-                switch (bgIndex)
-                {
-                    case 0:
-                        pictureBackground.Image = Properties.Resources._1;
-                        this.BackgroundImage = pictureBackground.Image;
-                        break;
-                    case 1:
-                        pictureBackground.Image = Properties.Resources._2;
-                        this.BackgroundImage = pictureBackground.Image;
-                        break;
-                    case 2:
-                        pictureBackground.Image= Properties.Resources._3;
-                        this.BackgroundImage = pictureBackground.Image;
-                        break;
-                    default:
-                        break;
-                }
-            }
-            
         }
     }
 }

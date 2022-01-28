@@ -46,14 +46,12 @@ namespace NFTShowdown
 
         #endregion
 
-        public Teambuilder(List<Moves> moves, List<Teams> teams, int teamID, List<Bitmap> bgs, int bgIndex)
+        public Teambuilder(List<Moves> moves, List<Teams> teams, int teamID)
         {
             InitializeComponent();
             this.moves = moves;
             this.teams = teams;
             this.teamID = teamID;
-            this.bgs = bgs;
-            this.bgIndex = bgIndex;
         }
 
 

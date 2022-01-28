@@ -18,8 +18,8 @@ namespace NFTShowdown
         List<Bitmap> bgs = new List<Bitmap>();
         int bgIndex;
         NFTs player;
-        int wins;
-        int losses;
+        int wins = 0;
+        int losses = 0;
 
         //AI
         Random randomAI = new Random();
@@ -35,21 +35,18 @@ namespace NFTShowdown
 
         #endregion
 
-        public BattleWindow(string format, List<NFTs> nfts, int wins, int losses, List<Bitmap> bgs, int bgIndex)
+        public BattleWindow(string format, List<NFTs> nfts, ref int wins, ref int losses)
         {
             InitializeComponent();
             this.format = format;
             this.nfts = nfts;
             this.wins = wins;
             this.losses = losses;
-            this.bgs = bgs;
-            this.bgIndex = bgIndex;
         }
 
         // Battle window has multiple functions for different formats.
         private void BattleWindow_Load(object sender, EventArgs e)
         {
-            this.BackgroundImage = bgs[bgIndex];
             switch (format)
             {
                 case "Random 1v1 Battle":
@@ -130,7 +127,7 @@ namespace NFTShowdown
                     btnMove3.Text = $"{item.Move3.Name} \n{item.Move3.Type}, Pow: {item.Move3.Power}, Acc: {item.Move3.Accuracy}, {item.Move3.MoveType}";
                     btnMove4.Text = $"{item.Move4.Name} \n{item.Move4.Type}, Pow: {item.Move4.Power}, Acc: {item.Move4.Accuracy}, {item.Move4.MoveType}";
                     #endregion
-                    player = item;
+                    player = new NFTs(item.ID, item.Name, item.Type, item.Ability, item.HP, item.Attack, item.Defense, item.Speed, item.Move1, item.Move2, item.Move3, item.Move4); ;
                     // Linking Progress bar/label with HP
                     progPlayerHP.Maximum = player.HP;
                     progPlayerHP.Value = player.HP;
@@ -138,7 +135,7 @@ namespace NFTShowdown
                 }
                 if (item.ID == cpuID)
                 {
-                    ai = item;
+                    ai = new NFTs(item.ID, item.Name, item.Type, item.Ability, item.HP, item.Attack, item.Defense, item.Speed, item.Move1, item.Move2, item.Move3, item.Move4);
                     // Linking Progress bar/label with HP
                     progCPUHP.Maximum = ai.HP;
                     progCPUHP.Value = ai.HP;
@@ -195,7 +192,7 @@ namespace NFTShowdown
             if (player.Speed > ai.Speed)
             {
                 PlayerDamageCalculation(player, ai, attackingMove, 1);
-                if (dead != 0)
+                if (dead != 1)
                 {
                     AIDamageCalculation(player, ai, 0);
                 }
@@ -203,7 +200,7 @@ namespace NFTShowdown
             else if (player.Speed < ai.Speed)
             {
                 AIDamageCalculation(player, ai, 1);
-                if (dead != 0)
+                if (dead != 1)
                 {
                     PlayerDamageCalculation(player, ai, attackingMove, 0);
                 }
@@ -226,7 +223,7 @@ namespace NFTShowdown
                 else
                 {
                     AIDamageCalculation(player, ai, 1);
-                    if (dead != 0)
+                    if (dead != 1)
                     {
                         PlayerDamageCalculation(player, ai, attackingMove, 0);
                     }
@@ -243,29 +240,41 @@ namespace NFTShowdown
             int damage = Convert.ToInt32(calculated);
             Random rand = new Random();
             #endregion
-            //Checking if player went first, adding to logs
-            // True
-            if (first == 1)
-            {
                 // Move type checks
-                switch (move.MoveType)
+            switch (move.MoveType)
                 {
                     case "Healing":
                         #region Healing
-                        if (player.HP < progPlayerHP.Maximum && player.HP <= progPlayerHP.Maximum / 2)
+                        if (player.HP <= progPlayerHP.Maximum && player.HP <= progPlayerHP.Maximum / 2)
                         {
                             // NFT recovers half its health
                             player.HP += progPlayerHP.Maximum / 2;
                             progPlayerHP.Value = player.HP;
                             lblPlayerHP.Text = player.HP.ToString();
-                            txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
+                            if (first == 1)
+                            {
+                                txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
+
+                            }
+                            else
+                            {
+                                txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
+                            }
                         }
-                        else if (player.HP > progPlayerHP.Maximum)
+                        else if (player.HP > progPlayerHP.Maximum / 2)
                         {
                             player.HP = progPlayerHP.Maximum;
                             progPlayerHP.Value = player.HP;
                             lblPlayerHP.Text = player.HP.ToString();
-                            txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
+                            if (first == 1)
+                            {
+                                txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
+
+                            }
+                            else
+                            {
+                                txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
+                            }
                         }
                         #endregion
                         break;
@@ -283,140 +292,106 @@ namespace NFTShowdown
                                 ai.HP = 0;
                                 progCPUHP.Value = 0;
                                 lblCPUHP.Text = "0";
-                                txtLogs.Text += ($"Turn: {turn}\n{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage! A knockout!\n");
+                                if (first == 1)
+                                {
+                                    txtLogs.Text += ($"Turn: {turn}\n{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage! A knockout!\n");
+
+                                }
+                                else
+                                {
+                                    txtLogs.Text += ($"{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage! A knockout!\n");
+                                }
                                 btnMove1.Enabled = false;
                                 btnMove2.Enabled = false;
                                 btnMove3.Enabled = false;
                                 btnMove4.Enabled = false;
                                 pictureDeadAI.Visible = true;
                                 dead = 1;
+                                wins++;
                                 MessageBox.Show("Player Won!");
+                                btnExit.Visible = true;
                             }
                             else
                             {
                                 ai.HP -= damage;
                                 progCPUHP.Value = ai.HP;
                                 lblCPUHP.Text = progCPUHP.Value.ToString();
-                                txtLogs.Text += ($"Turn: {turn}\n{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage!\n");
+                                if (first == 1)
+                                {
+                                    txtLogs.Text += ($"Turn: {turn}\n{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage!\n");
+
+                                }
+                                else
+                                {
+                                    txtLogs.Text += ($"{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage!\n");
+                                }
                             }
 
                         }
                         else
                         {
-                            txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \nThe opposing {ai.Name} avoided the attack!\n");
-                        }
-                        #endregion
-                        break;
-                    case "AtkBoost":
-                        #region AtkBoost
-                        player.Attack *= move.Power;
-                        txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} Multiplied their Atk stat by {move.Power}!\n");
-                        #endregion
-                        break;
-                    case "DefBoost":
-                        #region DefBoost
-                        player.Defense *= move.Power;
-                        txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} Multiplied their Def stat by {move.Power}!\n");
-                        #endregion
-                        break;
-                    case "SpeBoost":
-                        #region SpeBoost
-                        player.Attack *= move.Power;
-                        txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} Multiplied their Spe stat by {move.Power}!\n");
-                        #endregion
-                        break;
-                    default:
-                        break;
-                }
-            }
-            // False
-            else
-            {
-                // Move type checks
-                switch (move.MoveType)
-                {
-                    case "Healing":
-                        #region Healing
-                        if (player.HP < progPlayerHP.Maximum && player.HP <= progPlayerHP.Maximum / 2)
-                        {
-                            // NFT recovers half its health
-                            player.HP += progPlayerHP.Maximum / 2;
-                            progPlayerHP.Value = player.HP;
-                            lblPlayerHP.Text = progPlayerHP.Value.ToString();
-                            txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
-                        }
-                        else if (player.HP > progPlayerHP.Maximum)
-                        {
-                            player.HP = progPlayerHP.Maximum;
-                            progPlayerHP.Value = player.HP;
-                            lblPlayerHP.Text = progPlayerHP.Value.ToString();
-                            txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} recovered 50% HP!\n");
-                        }
-                        #endregion
-                        break;
-                    case "Damage":
-                        #region Damage
-                        int chance = rand.Next(0, 100);
-                        for (int i = 0; i < rand.Next(1, 100); i++)
-                        {
-                            chance = rand.Next(0, 100);
-                        }
-                        if (chance < move.Accuracy)
-                        {
-                            if (ai.HP - damage <= 0)
+                            if (first == 1)
                             {
-                                ai.HP = 0;
-                                progCPUHP.Value = 0;
-                                lblCPUHP.Text = "0";
-                                txtLogs.Text += ($"{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage! A knockout!\n");
-                                btnMove1.Enabled = false;
-                                btnMove2.Enabled = false;
-                                btnMove3.Enabled = false;
-                                btnMove4.Enabled = false;
-                                pictureDeadAI.Visible = true;
-                                dead = 1;
-                                MessageBox.Show("Player Won!");
+                                txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \nThe opposing {ai.Name} avoided the attack!\n");
+
                             }
                             else
                             {
-                                ai.HP -= damage;
-                                progCPUHP.Value = ai.HP;
-                                lblCPUHP.Text = progCPUHP.Value.ToString(); ;
-                                txtLogs.Text += ($"{player.Name} used {move.Name}! \nThe opposing {ai.Name} took {damage} damage!\n");
+                                txtLogs.Text += ($"{player.Name} used {move.Name}! \nThe opposing {ai.Name} avoided the attack!\n");
                             }
-                        }
-                        else
-                        {
-                            txtLogs.Text += ($"{player.Name} used {move.Name}! \nThe opposing {ai.Name} avoided the attack!\n");
                         }
                         #endregion
                         break;
                     case "AtkBoost":
                         #region AtkBoost
                         player.Attack *= move.Power;
-                        txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} Multiplied their Atk stat by {move.Power}!\n");
+                        if (first == 1)
+                        {
+                            txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} Multiplied their Atk stat by {move.Power}!\n");
+
+                        }
+                        else
+                        {
+                            txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} Multiplied their Atk stat by {move.Power}!\n");
+                        }
                         #endregion
                         break;
                     case "DefBoost":
                         #region DefBoost
                         player.Defense *= move.Power;
-                        txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} Multiplied their Def stat by {move.Power}!\n");
+                        if (first == 1)
+                        {
+                            txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} Multiplied their Def stat by {move.Power}!\n");
+
+                        }
+                        else
+                        {
+                            txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} Multiplied their Def stat by {move.Power}!\n");
+                        }
                         #endregion
                         break;
                     case "SpeBoost":
                         #region SpeBoost
                         player.Attack *= move.Power;
-                        txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} Multiplied their Spe stat by {move.Power}!\n");
+                        if (first == 1)
+                        {
+                            txtLogs.Text += ($"Turn {turn}:\n{player.Name} used {move.Name}! \n{player.Name} Multiplied their Spe stat by {move.Power}!\n");
+
+                        }
+                        else
+                        {
+                            txtLogs.Text += ($"{player.Name} used {move.Name}! \n{player.Name} Multiplied their Spe stat by {move.Power}!\n");
+                        }
                         #endregion
                         break;
                     default:
                         break;
                 }
-            }
+            
 
         }
 
-        private void AIDamageCalculation(NFTs ai, NFTs player, int first)
+        private void AIDamageCalculation(NFTs player, NFTs ai, int first)
         {
             //Variables
             #region Variables
@@ -449,30 +424,41 @@ namespace NFTShowdown
             int damage = Convert.ToInt32(calculated);
             Random rand = new Random();
             #endregion
-            //Checking if ai went first, adding to logs
-            // True
-            if (first == 1)
-            {
-                // Move type checks
-                switch (aiMove.MoveType)
+            // Move type checks
+            switch (aiMove.MoveType)
                 {
                     case "Healing":
                         #region Healing
-                        if (ai.HP < progPlayerHP.Maximum && ai.HP <= progPlayerHP.Maximum / 2)
+                        if (ai.HP <= progCPUHP.Maximum && ai.HP <= progCPUHP.Maximum / 2)
                         {
                             // NFT recovers half its health
                             ai.HP += progCPUHP.Maximum / 2;
                             progCPUHP.Value = ai.HP;
                             lblCPUHP.Text = progCPUHP.Value.ToString(); ;
-                            txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
+                            if (first == 1)
+                            {
+                                txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
+                            }
+                            else
+                            {
+                                txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
+                            }
                         }
                         else if (ai.HP > progPlayerHP.Maximum / 2)
                         {
-                            ai.HP = progPlayerHP.Maximum;
+                            ai.HP = progCPUHP.Maximum;
                             progCPUHP.Value = ai.HP;
-                            lblCPUHP.Text = progCPUHP.Value.ToString(); ;
-                            txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
+                            lblCPUHP.Text = progCPUHP.Value.ToString();
+                            if (first == 1)
+                            {
+                                txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
+                            }
+                            else
+                            {
+                                txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
+                            }
                         }
+                        
                         #endregion
                         break;
                     case "Damage":
@@ -489,140 +475,104 @@ namespace NFTShowdown
                                 player.HP = 0;
                                 progPlayerHP.Value = 0;
                                 lblPlayerHP.Text = "0";
-                                txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage! A knockout!\n");
+                                if (first == 1)
+                                {
+                                    txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage! A knockout!\n");
+                                }
+                                else
+                                {
+                                    txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage! A knockout!\n");
+                                }
                                 btnMove1.Enabled = false;
                                 btnMove2.Enabled = false;
                                 btnMove3.Enabled = false;
                                 btnMove4.Enabled = false;
                                 pictureDead.Visible = true;
                                 dead = 1;
+                                losses++;
                                 MessageBox.Show("CPU Wins! Good luck next time!");
+                                btnExit.Visible = true;
                             }
                             else
                             {
                                 player.HP -= damage;
-                                progPlayerHP.Value -= damage;
+                                progPlayerHP.Value = player.HP;
                                 lblPlayerHP.Text = progPlayerHP.Value.ToString();
-                                txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage!\n");
+                                if (first == 1)
+                                {
+                                    txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage!\n");
+                                }
+                                else
+                                {
+                                    txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage!\n");
+                                }
                             }
                         }
                         else
                         {
-                            txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \n{player.Name} avoided the attack!\n");
+                            if (first == 1)
+                            {
+                                txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \n{player.Name} avoided the attack!\n");
+
+                            }
+                            else
+                            {
+                                txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \n{player.Name} avoided the attack!\n");
+                            }
                         }
                         #endregion
                         break;
                     case "AtkBoost":
                         #region AtkBoost
                         ai.Attack *= aiMove.Power;
-                        txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Atk stat by {aiMove.Power}!\n");
+                        if (first == 1)
+                        {
+                            txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Atk stat by {aiMove.Power}!\n");
+
+                        }
+                        else
+                        {
+                            txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Atk stat by {aiMove.Power}!\n");
+                        }
                         #endregion
                         break;
                     case "DefBoost":
                         #region DefBoost
                         ai.Defense *= aiMove.Power;
-                        txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Def stat by {aiMove.Power}!\n");
-                        #endregion
-                        break;
-                    case "SpeBoost":
-                        #region SpeBoost
-                        ai.Attack *= aiMove.Power;
-                        txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Spe stat by {aiMove.Power}!\n");
-                        #endregion
-                        break;
-                    default:
-                        break;
-                }
-            }
-            // False
-            else
-            {
-                // Move type checks
-                switch (aiMove.MoveType)
-                {
-                    case "Healing":
-                        #region Healing
-                        if (player.HP < progPlayerHP.Maximum && player.HP <= progPlayerHP.Maximum / 2)
+                        if (first == 1)
                         {
-                            // NFT recovers half its health
-                            ai.HP += progCPUHP.Maximum / 2;
-                            progCPUHP.Value = ai.HP;
-                            lblCPUHP.Text = progCPUHP.Value.ToString(); ;
-                            txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
-                        }
-                        else if (ai.HP > progPlayerHP.Maximum)
-                        {
-                            ai.HP = progPlayerHP.Maximum;
-                            progCPUHP.Value = ai.HP;
-                            lblCPUHP.Text = progCPUHP.Value.ToString(); ;
-                            txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} recovered 50% HP!\n");
-                        }
-                        #endregion
-                        break;
-                    case "Damage":
-                        #region Damage
-                        int chance = rand.Next(0, 100);
-                        for (int i = 0; i < rand.Next(1, 100); i++)
-                        {
-                            chance = rand.Next(0, 100);
-                        }
-                        if (chance < aiMove.Accuracy)
-                        {
-                            if (player.HP - damage <= 0)
-                            {
-                                player.HP = 0;
-                                progPlayerHP.Value = 0;
-                                lblPlayerHP.Text = "0";
-                                txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage! A knockout!\n");
-                                btnMove1.Enabled = false;
-                                btnMove2.Enabled = false;
-                                btnMove3.Enabled = false;
-                                btnMove4.Enabled = false;
-                                pictureDead.Visible = true;
-                                dead = 1;
-                                MessageBox.Show("CPU Wins! Good luck next time!");
-                            }
-                            else
-                            {
-                                player.HP -= damage;
-                                progPlayerHP.Value -= damage;
-                                lblPlayerHP.Text = progPlayerHP.Value.ToString();
-                                txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \n{player.Name} took {damage} damage!\n");
-                            }
+                            txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Def stat by {aiMove.Power}!\n");
+
                         }
                         else
                         {
-                            txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \n{player.Name} avoided the attack!\n");
+                            txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Def stat by {aiMove.Power}!\n");
                         }
                         #endregion
-                        break;
-                    case "AtkBoost":
-                        #region AtkBoost
-                        ai.Attack *= aiMove.Power;
-                        txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Atk stat by {aiMove.Power}!\n");
-                        break;
-                    #endregion
-                    case "DefBoost":
-                        #region DefBooost
-                        player.Defense *= aiMove.Power;
-                        txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Def stat by {aiMove.Power}!\n");
-                        #endregion 
                         break;
                     case "SpeBoost":
                         #region SpeBoost
                         ai.Attack *= aiMove.Power;
-                        txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Spe stat by {aiMove.Power}!\n");
+                        if (first == 1)
+                        {
+                            txtLogs.Text += ($"Turn {turn}:\nThe opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Spe stat by {aiMove.Power}!\n");
+
+                        }
+                        else
+                        {
+                            txtLogs.Text += ($"The opposing {ai.Name} used {aiMove.Name}! \nThe opposing {ai.Name} Multiplied their Spe stat by {aiMove.Power}!\n");
+                        }
                         #endregion
                         break;
                     default:
                         break;
-                }
             }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
